@@ -1,4 +1,6 @@
 const form = document.getElementById('add-application-form');
+const showAddApplicationButton = document.getElementById('show-add-application');
+const cancelAddApplicationButton = document.getElementById('cancel-add-application');
 const companyNameInput = document.getElementById('company-name');
 const jobRoleInput = document.getElementById('job-role');
 const jobDescriptionInput = document.getElementById('job-description');
@@ -29,6 +31,30 @@ let selectedApplicationId = null;
 let selectedApplication = null;
 
 appliedAtEl.textContent = new Date().toLocaleString();
+
+function setAddApplicationFormVisible(isVisible) {
+  form.hidden = !isVisible;
+  showAddApplicationButton.hidden = isVisible;
+  if (isVisible) {
+    appliedAtEl.textContent = new Date().toLocaleString();
+  }
+}
+
+function hideAddApplicationForm() {
+  form.reset();
+  appliedAtEl.textContent = new Date().toLocaleString();
+  setAddApplicationFormVisible(false);
+}
+
+showAddApplicationButton.addEventListener('click', () => {
+  setMessage('', '');
+  setAddApplicationFormVisible(true);
+});
+
+cancelAddApplicationButton.addEventListener('click', () => {
+  hideAddApplicationForm();
+  setMessage('', '');
+});
 
 function setMessage(text, type) {
   formMessageEl.textContent = text;
@@ -77,8 +103,7 @@ form.addEventListener('submit', async (event) => {
     );
 
     setMessage('Application saved.', 'success');
-    form.reset();
-    appliedAtEl.textContent = new Date().toLocaleString();
+    hideAddApplicationForm();
     await refreshApplicationsList();
   } catch (error) {
     setMessage(error.message || 'Failed to save application.', 'error');

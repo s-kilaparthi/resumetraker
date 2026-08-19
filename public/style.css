@@ -164,6 +164,28 @@ form {
   border: 1px solid #e3e6ea;
 }
 
+#add-application-form[hidden] {
+  display: none;
+}
+
+#show-add-application {
+  width: 100%;
+  margin-bottom: 0;
+  background: #fff;
+  color: #1f6feb;
+  border-color: #1f6feb;
+}
+
+.form-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.form-actions button[type="submit"] {
+  margin-top: 0;
+}
+
 label {
   font-size: 0.875rem;
   font-weight: 600;
