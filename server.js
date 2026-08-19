@@ -254,38 +254,53 @@ app.get('/api/resume/:id', (req, res) => {
   }
 });
 
-if (require.main === module) {
-  const url = `http://localhost:${PORT}`;
+const url = `http://localhost:${PORT}`;
+const isDirectRun = require.main === module;
 
-  async function openInBrowser() {
-    const { default: open } = await import('open');
-    await open(url);
-  }
+function startServer() {
+  return new Promise((resolve, reject) => {
+    const server = app.listen(PORT, () => {
+      console.log(`Resume Tracker listening on ${url}`);
+      resolve(server);
+    });
 
-  const server = app.listen(PORT, async () => {
-    console.log(`Resume Tracker listening on ${url}`);
+    server.on('error', (err) => {
+      if (err.code === 'EADDRINUSE') {
+        console.log(`Port ${PORT} is already in use.`);
+        resolve(null);
+        return;
+      }
+
+      reject(err);
+    });
+  });
+}
+
+async function openInBrowser() {
+  const { default: open } = await import('open');
+  await open(url);
+}
+
+const serverReady = startServer().then(async (server) => {
+  if (isDirectRun) {
     try {
       await openInBrowser();
     } catch (err) {
       console.error('Could not open browser:', err.message);
     }
-  });
 
-  server.on('error', async (err) => {
-    if (err.code === 'EADDRINUSE') {
-      console.log(`Port ${PORT} is already in use. Opening the existing app...`);
-      try {
-        await openInBrowser();
-      } catch (openErr) {
-        console.error('Could not open browser:', openErr.message);
-      }
+    if (!server) {
       process.exit(0);
-      return;
     }
+  }
+});
 
+if (isDirectRun) {
+  serverReady.catch((err) => {
     console.error(err.message);
     process.exit(1);
   });
 }
 
 module.exports = app;
+module.exports.serverReady = serverReady;

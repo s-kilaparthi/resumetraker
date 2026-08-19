@@ -2,14 +2,36 @@
   "name": "resumetraker",
   "version": "1.0.0",
   "description": "Resume Tracker",
-  "main": "server.js",
+  "main": "main.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "electron-dev": "electron .",
+    "dist": "electron-builder --win",
+    "postinstall": "electron-rebuild -f -w better-sqlite3"
+  },
+  "build": {
+    "appId": "com.skilaparthi.resumetracker",
+    "productName": "Resume Tracker",
+    "win": {
+      "target": "nsis"
+    },
+    "files": [
+      "server.js",
+      "main.js",
+      "db.js",
+      "public/**/*",
+      "node_modules/**/*"
+    ]
   },
   "dependencies": {
     "better-sqlite3": "^12.11.1",
     "express": "^5.2.1",
     "multer": "^2.2.0",
     "open": "^11.0.1"
+  },
+  "devDependencies": {
+    "@electron/rebuild": "^3.7.2",
+    "electron": "^38.8.6",
+    "electron-builder": "^26.0.12"
   }
 }
