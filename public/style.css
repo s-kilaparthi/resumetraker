@@ -1,0 +1,317 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  padding: 24px;
+  color: #1a1a1a;
+  background: #f6f7f9;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+#app {
+  max-width: 1200px;
+}
+
+.layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.left-column {
+  flex: 0 0 45%;
+  width: 45%;
+  min-width: 0;
+}
+
+.right-column {
+  flex: 1;
+  min-width: 0;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e3e6ea;
+}
+
+.detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.detail-heading-block {
+  min-width: 0;
+  flex: 1;
+}
+
+#detail-heading {
+  font-size: 1.125rem;
+}
+
+#detail-job-role {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #555;
+  margin-top: 4px;
+}
+
+#detail-status {
+  flex-shrink: 0;
+  font: inherit;
+  padding: 6px 8px;
+  border: 1px solid #cfd4dc;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.status-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+#interview-date {
+  font: inherit;
+  padding: 6px 8px;
+  border: 1px solid #cfd4dc;
+  border-radius: 6px;
+}
+
+#expand-resume,
+#edit-application,
+#delete-application {
+  flex-shrink: 0;
+}
+
+#edit-application-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+#edit-application-form[hidden] {
+  display: none;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.edit-actions button[type="submit"] {
+  margin-top: 0;
+}
+
+#resume-preview {
+  margin-bottom: 16px;
+}
+
+#resume-preview iframe {
+  width: 100%;
+  height: 80vh;
+  border: none;
+}
+
+#resume-panel.resume-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background: #f6f7f9;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+#resume-panel.resume-fullscreen #resume-preview {
+  flex: 1;
+  margin-bottom: 0;
+  min-height: 0;
+}
+
+#resume-panel.resume-fullscreen iframe {
+  height: 100%;
+}
+
+#job-description-preview {
+  white-space: pre-wrap;
+  line-height: 1.5;
+  color: #333;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e3e6ea;
+}
+
+label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+input[type="text"],
+input[type="file"],
+textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #cfd4dc;
+  border-radius: 6px;
+  font: inherit;
+}
+
+.readonly-field {
+  padding: 8px 10px;
+  border: 1px solid #e3e6ea;
+  border-radius: 6px;
+  background: #f3f5f7;
+  color: #444;
+}
+
+button {
+  font: inherit;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid #cfd4dc;
+  background: #fff;
+  cursor: pointer;
+}
+
+button[type="submit"] {
+  margin-top: 16px;
+  background: #1f6feb;
+  color: #fff;
+  border-color: #1f6feb;
+}
+
+#form-message {
+  margin-top: 12px;
+  font-size: 0.9rem;
+}
+
+#form-message.success {
+  color: #1a7f37;
+}
+
+#form-message.error {
+  color: #cf222e;
+}
+
+#applications-section {
+  margin-top: 24px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e3e6ea;
+}
+
+#search-applications {
+  margin-bottom: 12px;
+}
+
+#applications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.application-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.application-item:hover {
+  background: #f3f5f7;
+}
+
+.application-item.selected {
+  background: #e8f0fe;
+}
+
+.application-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.application-details span {
+  font-size: 0.875rem;
+  color: #555;
+}
+
+.status-badge {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.status-badge.status-applied {
+  background: #e8eef5;
+  color: #3d5a80;
+}
+
+.status-badge.status-interview {
+  background: #fff4e5;
+  color: #b45309;
+}
+
+.status-badge.status-rejected {
+  background: #fde8e8;
+  color: #b42318;
+}
+
+.view-resume {
+  font-size: 0.875rem;
+  color: #1f6feb;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.empty-list {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+@media (max-width: 800px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .left-column {
+    flex: none;
+    width: 100%;
+  }
+
+  .right-column {
+    width: 100%;
+  }
+}

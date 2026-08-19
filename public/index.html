@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Resume Tracker</h1>
+    <div id="app">
+      <div class="layout">
+        <div class="left-column">
+          <form id="add-application-form">
+            <label for="company-name">Company name</label>
+            <input type="text" id="company-name" name="companyName" />
+
+            <label for="job-role">Job role</label>
+            <input type="text" id="job-role" name="jobRole" />
+
+            <label for="job-description">Job description</label>
+            <textarea id="job-description" name="jobDescription" rows="6"></textarea>
+
+            <label for="resume">Resume</label>
+            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" />
+
+            <label>Date applied</label>
+            <div id="applied-at" class="readonly-field"></div>
+
+            <button type="submit">Save Application</button>
+          </form>
+          <div id="form-message"></div>
+
+          <section id="applications-section">
+            <input
+              type="text"
+              id="search-applications"
+              placeholder="Search by company name..."
+            />
+            <div id="applications-list"></div>
+          </section>
+        </div>
+
+        <aside class="right-column" id="detail-panel">
+          <div id="resume-panel">
+            <div class="detail-header">
+              <div class="detail-heading-block">
+                <h2 id="detail-heading">Select an application to view details.</h2>
+                <p id="detail-job-role"></p>
+              </div>
+              <div class="status-controls">
+                <select id="detail-status" hidden>
+                  <option value="Applied">Applied</option>
+                  <option value="Interview">Interview</option>
+                  <option value="Rejected">Rejected</option>
+                </select>
+                <input type="date" id="interview-date" hidden />
+              </div>
+              <button type="button" id="edit-application" hidden>Edit</button>
+              <button type="button" id="delete-application" hidden>Delete</button>
+              <button type="button" id="expand-resume">Expand</button>
+            </div>
+            <div id="resume-preview"></div>
+          </div>
+          <div id="job-description-preview"></div>
+          <form id="edit-application-form" hidden>
+            <label for="edit-company-name">Company name</label>
+            <input type="text" id="edit-company-name" name="companyName" />
+
+            <label for="edit-job-role">Job role</label>
+            <input type="text" id="edit-job-role" name="jobRole" />
+
+            <label for="edit-job-description">Job description</label>
+            <textarea id="edit-job-description" name="jobDescription" rows="6"></textarea>
+
+            <label for="edit-resume">Replace resume (optional)</label>
+            <input type="file" id="edit-resume" name="resume" accept=".pdf,.doc,.docx" />
+
+            <div class="edit-actions">
+              <button type="submit">Save</button>
+              <button type="button" id="cancel-edit">Cancel</button>
+            </div>
+          </form>
+        </aside>
+      </div>
+    </div>
+    <script src="renderer.js"></script>
+  </body>
+</html>

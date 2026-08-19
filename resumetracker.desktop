@@ -1,0 +1,13 @@
+# Replace the Exec path below with the full absolute path to start-app.sh
+# in this project (for example: /home/you/resumetraker/start-app.sh).
+# Then run:
+#   chmod +x start-app.sh resumetracker.desktop
+# Copy or move this file to ~/.local/share/applications/ or your Desktop
+# folder to make Resume Tracker double-clickable.
+
+[Desktop Entry]
+Name=Resume Tracker
+Exec=/home/skilaparthi/resumetraker/start-app.sh
+Type=Application
+Terminal=false
+Icon=utilities-terminal
